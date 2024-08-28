@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    x:Class="BarbeariaApp.View.MensagemPopUpView"
+    >
+    <StackLayout
+        BackgroundColor="Transparent"
+        >
+        <StackLayout
+            BackgroundColor="Black"
+            Opacity="0.5"
+            HorizontalOptions="FillAndExpand"
+        />
+        <StackLayout
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            WidthRequest="300"
+            VerticalOptions="CenterAndExpand"
+            >
+            <StackLayout
+                Padding="15"
+                >
+                <Label
+                    VerticalOptions="FillAndExpand"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="{Binding TextoMensagem}"
+                    TextColor="#828282"
+                />
+                <StackLayout
+                    Orientation="Horizontal"
+                    VerticalOptions="FillAndExpand"
+                    >
+                    <Button
+                        CornerRadius="10"
+                        HeightRequest="60"
+                        BackgroundColor="#9F0000"
+                        TextColor="white"
+                        Text="NÃO"
+                        FontSize="20"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="5,10"
+                        Command="{Binding CommandRespostaNao}"
+                        VerticalOptions="EndAndExpand"
+                    />
+                    <Button
+                        CornerRadius="10"
+                        HeightRequest="60"
+                        BackgroundColor="#00BD08"
+                        TextColor="white"
+                        Text="SIM"
+                        FontSize="20"
+                        HorizontalOptions="FillAndExpand"
+                        Margin="5,10"
+                        Command="{Binding CommandRespostaSim}"
+                        VerticalOptions="EndAndExpand"
+                    />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout
+            BackgroundColor="Black"
+            Opacity="0.5"
+            HorizontalOptions="FillAndExpand"
+        />
+    </StackLayout>
+</pages:PopupPage>

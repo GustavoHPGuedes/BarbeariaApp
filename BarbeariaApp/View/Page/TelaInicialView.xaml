@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BarbeariaApp.View.TelaInicialView"
+    Title="Tela Inicial"
+    >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Opções"
+            Order="Secondary"
+            Priority="0"
+            Command="{Binding CommandAbreTelaInicialPopUp}"
+        />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout
+            VerticalOptions="FillAndExpand"
+            BackgroundColor="#7C92A6"
+            >
+            <Label
+                Text="Seja bem-vindo."
+                TextColor="White"
+                FontSize="20"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+            />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

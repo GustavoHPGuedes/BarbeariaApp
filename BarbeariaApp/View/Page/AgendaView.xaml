@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BarbeariaApp.View.AgendaView"
+    Title="Agenda"
+    >
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout
+                IsVisible="{Binding TelaConsultaVisivel}"
+                VerticalOptions="FillAndExpand"
+                >
+                <StackLayout
+                     VerticalOptions="FillAndExpand"
+                     BackgroundColor="#7C92A6"
+                     Padding="15"
+                     >
+                    <StackLayout
+                        Orientation="Horizontal"
+                        HeightRequest="65"
+                        VerticalOptions="Fill"
+                        Padding="15"
+                        Margin="0,0,0,20"
+                        >
+                        <ImageButton
+                            Source="flechaEsquerdaButton.png"
+                            HorizontalOptions="Fill"
+                            BackgroundColor="Transparent"
+                            Command="{Binding CommandSubtraiData}"
+                        />
+                        <Frame
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="#283040"
+                            CornerRadius="10"
+                            Padding="5"
+                            HeightRequest="50"
+                            >
+                            <Label
+                                Text="{Binding DataSelecionadaConsulta, StringFormat='{0:dd/MM/yyyy}'}"
+                                TextColor="white"
+                                FontSize="20"
+                                HorizontalTextAlignment="Center"
+                                VerticalTextAlignment="Center"
+                            />
+                        </Frame>
+                        <ImageButton
+                            Source="flechaDireitaButton.png"
+                            HorizontalOptions="Fill"
+                            BackgroundColor="Transparent"
+                            Command="{Binding CommandAdicionaData}"
+                        />
+                    </StackLayout>
+
+                    <Button
+                        CornerRadius="10"
+                        HeightRequest="60"
+                        BackgroundColor="#0F3BBF"
+                        Text="+"
+                        TextColor="White"
+                        FontSize="28"
+                        VerticalOptions="Fill"
+                        Margin="0,10"
+                        Command="{Binding CommandAdicionaAgendamento}"
+                    />
+
+                    <Frame
+                        BackgroundColor="#283040"
+                        CornerRadius="10"
+                        Padding="5"
+                        VerticalOptions="FillAndExpand"
+                        HeightRequest="90"
+                        >
+                        <StackLayout>
+
+                            <Grid
+                                Padding="5"
+                                >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2.22*" />
+                                    <ColumnDefinition Width="1.25*" />
+                                    <ColumnDefinition Width="0.55*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Frame
+                                    Grid.Column="0"
+                                    BackgroundColor="#4C5C73"
+                                    CornerRadius="7.5"
+                                />
+
+                                <Label
+                                    Grid.Column="0"
+                                    Text="Cliente"
+                                    TextColor="White"
+                                    Margin="5,0"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"  
+                                    FontSize="20"
+                                />
+
+
+                                <Frame
+                                    Grid.Column="1"
+                                    BackgroundColor="#4C5C73"
+                                    CornerRadius="10"
+                                />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Text="Horário"
+                                    TextColor="White"
+                                    Margin="5,0"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    FontSize="20"
+                                />
+                                <Frame
+                                    Grid.Column="2"
+                                    BackgroundColor="#4C5C73"
+                                    CornerRadius="10"
+                                />
+
+                                <Label
+                                    Grid.Column="2"
+                                    Text=""
+                                    Margin="5,0"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    FontSize="20"
+                                />
+
+                            </Grid>
+
+                            <ScrollView>
+                                <CollectionView
+                                    SelectionMode="Single"
+                                    ItemsSource="{Binding AgendamentosDoDia}"
+                                    HeightRequest="323"
+                                    >
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid
+                                                Padding="5"
+                                                >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2.22*" />
+                                                    <ColumnDefinition Width="1.25*" />
+                                                    <ColumnDefinition Width="0.55*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Frame
+                                                    Grid.Column="0"
+                                                    BackgroundColor="White"
+                                                    CornerRadius="7.5"
+                                                />
+                                                <Label
+                                                    Grid.Column="0"
+                                                    Text="{Binding Cliente}"
+                                                    TextColor="#828282"
+                                                    Margin="5,0"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Center"
+                                                />
+
+                                                <Frame
+                                                    Grid.Column="1"
+                                                    BackgroundColor="White"
+                                                    CornerRadius="10"
+                                                />
+                                                <Label
+                                                    Grid.Column="1"
+                                                    Text="{Binding Horario, StringFormat='{}{0:hh\\:mm}'}"
+                                                    TextColor="#828282"
+                                                    Margin="5,0"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Center"
+                                                />
+
+                                                <ImageButton
+                                                    Grid.Column="2"
+                                                    HeightRequest="60"
+                                                    BackgroundColor="White"
+                                                    Source="lupaIcon"
+                                                    BorderWidth="1.5"
+                                                    Padding="12"
+                                                    CornerRadius="10"
+                                                    ClassId="{Binding Codigo}"
+                                                    Clicked="ModificaAgendamento"
+                                                />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </ScrollView>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout
+                IsVisible="{Binding TelaModificacoesVisivel}"
+                VerticalOptions="FillAndExpand"
+                >
+                <StackLayout
+                    VerticalOptions="FillAndExpand"
+                    BackgroundColor="#7C92A6"
+                    Padding="15"
+                    >
+                    <StackLayout
+                        Orientation="Horizontal"
+                        IsVisible="{Binding OpcoesCadastroVisivel}"
+                        >
+                        <Button
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            BackgroundColor="#9F0000"
+                            TextColor="White"
+                            Text="Cancelar"
+                            FontSize="20"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="5,10"
+                            Command="{Binding CommandVoltaTelaConsulta}"
+                        />
+                        <Button
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            BackgroundColor="#00BD08"
+                            TextColor="White"
+                            Text="Confirmar"
+                            FontSize="20"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="5,10"
+                            Command="{Binding CommandConfirmaModificaoAgendamento}"
+                        />
+                    </StackLayout>
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        IsVisible="{Binding OpcoesAlteracoesVisivel}"
+                        >
+                        <Button
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            BackgroundColor="#00BD08"
+                            TextColor="White"
+                            Text="Voltar"
+                            FontSize="20"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="5,10"
+                            Command="{Binding CommandVoltaTelaConsulta}"
+                        />
+                        <Button
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            BackgroundColor="#00CBBF"
+                            TextColor="White"
+                            Text="Alterar"
+                            FontSize="20"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="5,10"
+                            Command="{Binding CommandAlteraAgendamento}"
+                        />
+                        <Button
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            BackgroundColor="#9F0000"
+                            TextColor="White"
+                            Text="Deletar"
+                            FontSize="20"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="5,10"
+                            Command="{Binding CommandDeletaAgendamento}"
+                        />
+                    </StackLayout>
+
+                    <Frame
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#283040"
+                        Padding="5"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        Margin="0,50,0,5"
+                        >
+                        <StackLayout
+                            Orientation="Horizontal"
+                            >
+                            <Label
+                                Text="Cliente:"
+                                FontSize="20"
+                                Margin="10"
+                                HorizontalTextAlignment="Start"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="FillAndExpand"
+                                WidthRequest="5"
+                                TextColor="White"
+                            />
+                            <Entry
+                                Text="{Binding ClienteAgendamentoSelecionado}"
+                                TextColor="White"
+                                WidthRequest="135"
+                                HorizontalOptions="FillAndExpand"
+                                IsReadOnly="{Binding InputReadOnly}"
+                            />
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#283040"
+                        Padding="5"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        Margin="0,20,0,0"
+                        >
+                        <StackLayout
+                            Orientation="Horizontal"
+                            >
+                            <Label
+                                Text="Dia:"
+                                FontSize="20"
+                                Margin="10"
+                                HorizontalTextAlignment="Start"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="FillAndExpand"
+                                WidthRequest="5"
+                                TextColor="White"
+                            />
+                            <Button
+                                Text="{Binding DataSelecionadaText}"
+                                CornerRadius="10"
+                                HeightRequest="60"
+                                WidthRequest="135"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#0F3BBF"
+                                TextColor="White"
+                                FontSize="20"
+                                VerticalOptions="Fill"
+                                Clicked="SelecionarData"
+                                IsEnabled="{Binding InputButtonEnabled}"
+                            />
+                        </StackLayout>
+                    </Frame>
+
+                    <DatePicker Date="{Binding DataSelecionada}" IsVisible="False" x:Name="DataEntradaPicker"/>
+                    
+                    <Frame
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#283040"
+                        Padding="5"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        Margin="0,20,0,0"
+                        >
+                        <StackLayout
+                            Orientation="Horizontal"
+                            >
+                            <Label
+                                Text="Horário:"
+                                FontSize="20"
+                                Margin="10"
+                                HorizontalTextAlignment="Start"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="FillAndExpand"
+                                WidthRequest="5"
+                                TextColor="White"
+                            />
+                            <Button
+                                Text="{Binding HoraSelecionadaText}"
+                                CornerRadius="10"
+                                HeightRequest="60"
+                                WidthRequest="135"
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="#0F3BBF"
+                                TextColor="White"
+                                FontSize="20"
+                                VerticalOptions="Fill"
+                                Clicked="SelecionarHora"
+                                IsEnabled="{Binding InputButtonEnabled}"
+                            />
+                        </StackLayout>
+                    </Frame>
+
+                    <TimePicker Time="{Binding HoraSelecionada}" IsVisible="False" x:Name="TimePicker"/>
+
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

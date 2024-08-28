@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    x:Class="BarbeariaApp.View.ServicosPopUpView"
+    >
+    <StackLayout
+        BackgroundColor="Transparent"
+        >
+        <StackLayout
+            BackgroundColor="Black"
+            Opacity="0.5"
+            HorizontalOptions="FillAndExpand"
+        />
+        <StackLayout
+            BackgroundColor="White"
+            HorizontalOptions="FillAndExpand"
+            WidthRequest="500"
+            VerticalOptions="CenterAndExpand"
+            >
+            <StackLayout
+                Padding="20"
+                >
+                <Label
+                    Margin="0,0,0,25"
+                    VerticalOptions="FillAndExpand"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    Text="Selecione um serviço:"
+                    TextColor="Black"
+                />
+                <Frame
+                    BackgroundColor="#283040"
+                    CornerRadius="10"
+                    Padding="5"
+                    VerticalOptions="FillAndExpand"
+                    HeightRequest="320"
+                    >
+                    <StackLayout>
+                        <ScrollView>
+                            <CollectionView
+                                SelectionMode="Single"
+                                ItemsSource="{Binding Servicos}"
+                                SelectedItem="{Binding ServicoSelecionado}"
+                                HeightRequest="320"
+                                >
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid
+                                            Padding="5"
+                                            >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2.8*" />
+                                                <ColumnDefinition Width="1.2*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Frame
+                                                Grid.Column="0"
+                                                BackgroundColor="White"
+                                                CornerRadius="7.5"
+                                                HeightRequest="40"
+                                            />
+                                            <Label
+                                                Grid.Column="0"
+                                                Text="{Binding Descricao}"
+                                                TextColor="#828282"
+                                                Margin="5,0"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                            />
+
+                                            <Frame
+                                                Grid.Column="1"
+                                                BackgroundColor="White"
+                                                CornerRadius="10"
+                                                HeightRequest="40"
+                                            />
+                                            <Label
+                                                Grid.Column="1"
+                                                Text="{Binding Valor}"
+                                                TextColor="#828282"
+                                                Margin="5,0"
+                                                HorizontalOptions="Center"
+                                                VerticalOptions="Center"
+                                            />
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </ScrollView>
+                    </StackLayout>
+                </Frame>
+                <StackLayout
+                    Orientation="Horizontal"
+                    Margin="0,35,0,0"
+                    HorizontalOptions="FillAndExpand"
+                    >
+                    <Button
+                        Margin="0,5"
+                        CornerRadius="10"
+                        WidthRequest="10"
+                        HeightRequest="65"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#9F0000"
+                        Text="VOLTAR"
+                        TextColor="white"
+                        FontSize="18"
+                        Command="{Binding CommandVoltar}"
+                    />
+                    <Button
+                        Margin="0,5"
+                        CornerRadius="10"
+                        WidthRequest="10"
+                        HeightRequest="65"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#0F3BBF"
+                        Text="SELECIONAR"
+                        TextColor="white"
+                        FontSize="18"
+                        Command="{Binding CommandSelecionar}"
+                    />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        <StackLayout
+            BackgroundColor="Black"
+            Opacity="0.5"
+            HorizontalOptions="FillAndExpand"
+        />
+    </StackLayout>
+</pages:PopupPage>

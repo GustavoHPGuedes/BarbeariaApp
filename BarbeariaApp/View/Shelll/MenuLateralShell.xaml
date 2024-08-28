@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:views="clr-namespace:BarbeariaApp.View"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BarbeariaApp.View.MenuLateralShell"
+    BackgroundColor="#113A8C"
+    FlyoutBackgroundColor="#113A8C"
+    >
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid
+                ColumnDefinitions="1*,4*"
+                RowDefinitions="Auto"
+                >
+                <StackLayout
+                    Orientation="Horizontal"
+                    Grid.ColumnSpan="5"
+                    Padding="20"
+                    >
+                    <Image
+                        Source="{Binding Icon}"
+                        Margin="5"
+                        HeightRequest="20"
+                    />
+                    <Label
+                        Grid.Column="1"
+                        FontSize="26"
+                        Text="{Binding Title}"
+                        TextColor="white"
+                        VerticalTextAlignment="Center"
+                    />
+                </StackLayout>
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <ShellContent
+        Title="Tela Inicial"
+        ContentTemplate="{DataTemplate views:TelaInicialView}"
+        >
+        <ShellContent.Icon>
+            <ImageSource>telaInicialIcon.png</ImageSource>
+        </ShellContent.Icon>
+    </ShellContent>
+
+    <ShellContent
+        Title="Agenda"
+        ContentTemplate="{DataTemplate views:AgendaView}"
+        >
+        <ShellContent.Icon>
+            <ImageSource>agendaIcon.png</ImageSource>
+        </ShellContent.Icon>
+    </ShellContent>
+
+    <ShellContent
+        Title="Atendimentos"
+        ContentTemplate="{DataTemplate views:AtendimentosView}"
+        >
+        <ShellContent.Icon>
+            <ImageSource>atendimentosIcon.png</ImageSource>
+        </ShellContent.Icon>
+    </ShellContent>
+
+    <ShellContent
+        Title="Serviços"
+        ContentTemplate="{DataTemplate views:ServicosView}"
+        >
+        <ShellContent.Icon>
+            <ImageSource>servicosIcon.png</ImageSource>
+        </ShellContent.Icon>
+    </ShellContent>
+
+    <ShellContent
+        Title="Produtos"
+        ContentTemplate="{DataTemplate views:ProdutosView}"
+        >
+        <ShellContent.Icon>
+            <ImageSource>produtosIcon.png</ImageSource>
+        </ShellContent.Icon>
+    </ShellContent>
+
+</Shell>

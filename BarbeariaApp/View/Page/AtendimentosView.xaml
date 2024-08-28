@@ -1,0 +1,716 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BarbeariaApp.View.AtendimentosView"
+    Title="Atendimentos"
+    >
+    <ContentPage.Content>
+
+        <StackLayout>
+            <StackLayout
+                IsVisible="{Binding TelaConsultaVisivel}"
+                VerticalOptions="FillAndExpand"
+                >
+                <StackLayout
+                     VerticalOptions="FillAndExpand"
+                     BackgroundColor="#7C92A6"
+                     Padding="15"
+                     >
+
+                    <StackLayout
+                        Orientation="Horizontal"
+                        HeightRequest="65"
+                        VerticalOptions="Fill"
+                        Padding="15"
+                        Margin="0,0,0,20"
+                        >
+                        <ImageButton
+                            Source="flechaEsquerdaButton.png"
+                            HorizontalOptions="Fill"
+                            BackgroundColor="Transparent"
+                            Command="{Binding CommandSubtraiData}"
+                        />
+                        <Frame
+                            HorizontalOptions="FillAndExpand"
+                            BackgroundColor="#283040"
+                            CornerRadius="10"
+                            Padding="5"
+                            HeightRequest="50"
+                            >
+                            <Label
+                                Text="{Binding DataSelecionada, StringFormat='{0:dd/MM/yyyy}'}"
+                                TextColor="white"
+                                FontSize="20"
+                                HorizontalTextAlignment="Center"
+                                VerticalTextAlignment="Center"
+                            />
+                        </Frame>
+                        <ImageButton
+                            Source="flechaDireitaButton.png"
+                            HorizontalOptions="Fill"
+                            BackgroundColor="Transparent"
+                            Command="{Binding CommandAdicionaData}"
+                        />
+                    </StackLayout>
+
+                    <Button
+                        CornerRadius="10"
+                        HeightRequest="60"
+                        BackgroundColor="#0F3BBF"
+                        TextColor="white"
+                        Text="+"
+                        FontSize="28"
+                        VerticalOptions="Fill"
+                        Margin="0,10"
+                        Command="{Binding CommandAdicionaAtendimento}"
+                    />
+
+                    <Frame
+                        BackgroundColor="#283040"
+                        CornerRadius="10"
+                        Padding="5"
+                        VerticalOptions="FillAndExpand"
+                        HeightRequest="90"
+                        >
+                        <StackLayout>
+
+                            <Grid
+                                Padding="5"
+                                >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2.22*" />
+                                    <ColumnDefinition Width="1.25*" />
+                                    <ColumnDefinition Width="0.55*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Frame
+                                    Grid.Column="0"
+                                    BackgroundColor="#4C5C73"
+                                    CornerRadius="7.5"
+                                />
+
+                                <Label
+                                    Grid.Column="0"
+                                    Text="Cliente"
+                                    TextColor="white"
+                                    Margin="5,0"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"  
+                                    FontSize="20"
+                                />
+
+
+                                <Frame
+                                    Grid.Column="1"
+                                    BackgroundColor="#4C5C73"
+                                    CornerRadius="10"
+                                />
+
+                                <Label
+                                    Grid.Column="1"
+                                    Text="Valor"
+                                    TextColor="white"
+                                    Margin="5,0"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    FontSize="20"
+                                />
+                                <Frame
+                                    Grid.Column="2"
+                                    BackgroundColor="#4C5C73"
+                                    CornerRadius="10"
+                                />
+
+                                <Label
+                                    Grid.Column="2"
+                                    Text=""
+                                    Margin="5,0"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    FontSize="20"
+                                />
+
+                            </Grid>
+
+                            <ScrollView>
+                                <CollectionView
+                                    SelectionMode="Single"
+                                    ItemsSource="{Binding AtendimentosDoDia}"
+                                    HeightRequest="323"
+                                    >
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid
+                                                Padding="5"
+                                                >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2.22*" />
+                                                    <ColumnDefinition Width="1.25*" />
+                                                    <ColumnDefinition Width="0.55*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Frame
+                                                    Grid.Column="0"
+                                                    BackgroundColor="White"
+                                                    CornerRadius="7.5"
+                                                />
+                                                <Label
+                                                    Grid.Column="0"
+                                                    Text="{Binding Cliente}"
+                                                    TextColor="#828282"
+                                                    Margin="5,0"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Center"
+                                                />
+
+                                                <Frame
+                                                    Grid.Column="1"
+                                                    BackgroundColor="White"
+                                                    CornerRadius="10"
+                                                />
+                                                <Label
+                                                    Grid.Column="1"
+                                                    Text="{Binding ValorTotal}"
+                                                    TextColor="#828282"
+                                                    Margin="5,0"
+                                                    HorizontalOptions="Center"
+                                                    VerticalOptions="Center"
+                                                />
+
+                                                <ImageButton
+                                                    Grid.Column="2"
+                                                    HeightRequest="60"
+                                                    BackgroundColor="White"
+                                                    Source="lupaIcon"
+                                                    BorderWidth="1.5"
+                                                    Padding="12"
+                                                    CornerRadius="10"
+                                                    ClassId="{Binding Codigo}"
+                                                    Clicked="ModoficaAtendimento"
+                                                />
+                                            </Grid>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </ScrollView>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#283040"
+                        CornerRadius="10"
+                        Padding="5"
+                        HeightRequest="50"
+                        >
+                        <StackLayout
+                            Orientation="Horizontal"
+                            Padding="10"
+                            >
+                            <Label
+                                Text="Ganho Diário:"
+                                FontSize="20"
+                                HorizontalOptions="FillAndExpand"
+                                WidthRequest="20"
+                                TextColor="White"
+                                HorizontalTextAlignment="Start"
+                                VerticalTextAlignment="Center"
+                            />
+                            <Label
+                                Text="{Binding GanhoDiarioAtendimentosText}"
+                                FontSize="20"
+                                HorizontalOptions="FillAndExpand"
+                                WidthRequest="50"
+                                HorizontalTextAlignment="End"
+                                VerticalTextAlignment="Center"
+                                TextColor="LimeGreen"
+                            />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout
+                IsVisible="{Binding TelaModificacoesVisivel}"
+                VerticalOptions="FillAndExpand"
+                >
+                <StackLayout
+                    VerticalOptions="FillAndExpand"
+                    BackgroundColor="#7C92A6"
+                    Padding="15"
+                    >
+                    <StackLayout
+                        Orientation="Horizontal"
+                        IsVisible="{Binding OpcoesCadastroVisivel}"
+                        >
+                        <Button
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            BackgroundColor="#9F0000"
+                            Text="Cancelar"
+                            TextColor="white"
+                            FontSize="20"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="5,10"
+                            Command="{Binding CommandVoltaTelaConsulta}"
+                        />
+                        <Button
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            BackgroundColor="#00BD08"
+                            Text="Confirmar"
+                            TextColor="white"
+                            FontSize="20"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="5,10"
+                            Command="{Binding CommandConfimaModificacaoAtendimento}"
+                        />
+                    </StackLayout>
+                    
+                    <StackLayout
+                        Orientation="Horizontal"
+                        IsVisible="{Binding OpcoesAlteracoesVisivel}"
+                        >
+                        <Button
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            BackgroundColor="#00BD08"
+                            Text="Voltar"
+                            TextColor="white"
+                            FontSize="20"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="5,10"
+                            Command="{Binding CommandVoltaTelaConsulta}"
+                        />
+                        <Button
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            BackgroundColor="#00CBBF"
+                            Text="Alterar"
+                            TextColor="white"
+                            FontSize="20"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="5,10"
+                            Command="{Binding CommandAlterarAtendimento}"
+                        />
+                        <Button
+                            CornerRadius="10"
+                            HeightRequest="60"
+                            BackgroundColor="#9F0000"
+                            Text="Deletar"
+                            TextColor="white"
+                            FontSize="20"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="5,10"
+                            Command="{Binding CommandDeletarAtendimento}"
+                        />
+                    </StackLayout>
+
+                    <Frame
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#283040"
+                        Padding="5"
+                        CornerRadius="10"
+                        HeightRequest="50"
+                        Margin="0,20,0,2.5"
+                        >
+                        <StackLayout
+                            Orientation="Horizontal"
+                            >
+                            <Label
+                                Text="Cliente:"
+                                TextColor="white"
+                                FontSize="18"
+                                Margin="10"
+                                HorizontalTextAlignment="Start"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="FillAndExpand"
+                                WidthRequest="10"
+                            />
+                            <Entry
+                                WidthRequest="120"
+                                TextColor="white"
+                                HorizontalOptions="FillAndExpand"
+                                IsReadOnly="{Binding InputReadOnly}"
+                                Text="{Binding ClienteAtendimentoSelecionado}"
+                            />
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#283040"
+                        Padding="5"
+                        CornerRadius="10"
+                        HeightRequest="{Binding FrameServicosAltura}"
+                        Margin="0,2.5"
+                        >
+                        <StackLayout
+                            VerticalOptions="FillAndExpand"
+                            >
+                            <Grid
+                                HeightRequest="60"
+                                >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    Margin="15,0,0,0"
+                                    Text="Serviços:"
+                                    TextColor="white"
+                                    FontSize="18"
+                                    HorizontalTextAlignment="Start"
+                                    VerticalTextAlignment="Center"
+                                    HorizontalOptions="FillAndExpand"
+                                    WidthRequest="10"
+                                    HeightRequest="60"
+                                />
+                                <Button
+                                    Grid.Column="1"
+                                    Margin="-5,0,15,0"
+                                    CornerRadius="10"
+                                    WidthRequest="120"
+                                    HorizontalOptions="FillAndExpand"
+                                    BackgroundColor="#0F3BBF"
+                                    IsEnabled="{Binding InputButtonEnabled}"
+                                    Command="{Binding CommandSelecionaServico}"
+                                    Text="+"
+                                    TextColor="white"
+                                    FontSize="20"
+                                    HeightRequest="60"
+                                />
+                            </Grid>
+
+
+                            <StackLayout
+                                VerticalOptions="FillAndExpand"
+                                IsVisible="{Binding InputReadOnly}"
+                                >
+                                <StackLayout
+                                    HeightRequest="{Binding GridServicosAltura}"
+                                    >
+                                    <CollectionView
+                                        SelectionMode="Single"
+                                        ItemsSource="{Binding ServicosSelecionados}"
+                                        >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid
+                                                    Padding="5"
+                                                    >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*" />
+                                                        <ColumnDefinition Width="0.5*" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Frame
+                                                        Grid.Column="0"
+                                                        BackgroundColor="White"
+                                                        CornerRadius="10"
+                                                        HeightRequest="15"
+                                                        Margin="10,0,0,0"
+                                                    />
+                                                    <Label
+                                                        Grid.Column="0"
+                                                        Text="{Binding Descricao}"
+                                                        TextColor="#828282"
+                                                        Margin="10,0,0,0"
+                                                        VerticalOptions="Center"
+                                                        HorizontalTextAlignment="Center"
+                                                        FontSize="20"
+                                                        HorizontalOptions="FillAndExpand"
+                                                    />
+                                                    <Frame
+                                                        Grid.Column="1"
+                                                        BackgroundColor="White"
+                                                        CornerRadius="10"
+                                                        HeightRequest="15"
+                                                        Margin="0,0,10,0"
+                                                    />
+                                                    <Label
+                                                        Grid.Column="1"
+                                                        Text="{Binding Valor}"
+                                                        TextColor="#828282"
+                                                        Margin="0,0,10,0"
+                                                        VerticalOptions="Center"
+                                                        HorizontalTextAlignment="Center"
+                                                        FontSize="20"
+                                                        HorizontalOptions="FillAndExpand"
+                                                    />
+
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout
+                                VerticalOptions="FillAndExpand"
+                                IsVisible="{Binding InputButtonEnabled}"
+                                >
+                                <StackLayout
+                                    HeightRequest="{Binding GridServicosAltura}"
+                                    >
+                                    <CollectionView
+                                        SelectionMode="Single"
+                                        ItemsSource="{Binding ServicosSelecionados}"
+                                        >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid
+                                                    Padding="5"
+                                                    >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*" />
+                                                        <ColumnDefinition Width="0.5*" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Frame
+                                                        Grid.Column="0"
+                                                        BackgroundColor="White"
+                                                        CornerRadius="10"
+                                                        HeightRequest="15"
+                                                        Margin="10,0,0,0"
+                                                    />
+                                                    <Label
+                                                        Grid.Column="0"
+                                                        Text="{Binding Descricao}"
+                                                        TextColor="#828282"
+                                                        Margin="10,0,0,0"
+                                                        VerticalOptions="Center"
+                                                        HorizontalTextAlignment="Center"
+                                                        FontSize="20"
+                                                        HorizontalOptions="FillAndExpand"
+                                                    />
+                                                    <ImageButton
+                                                        Padding="15"
+                                                        Grid.Column="1"
+                                                        BackgroundColor="#9F0000"
+                                                        CornerRadius="10"
+                                                        HeightRequest="15"
+                                                        Margin="0,0,10,0"
+                                                        Source="lixeiraButton.png"
+                                                        ClassId="{Binding Codigo}"
+                                                        Clicked="DeletaServico"
+                                                    />
+
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Frame>
+                    
+                    <Frame
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#283040"
+                        Padding="5"
+                        CornerRadius="10"
+                        HeightRequest="{Binding FrameProdutosAltura}"
+                        Margin="0,2.5"
+                        >
+                        <StackLayout
+                            VerticalOptions="FillAndExpand"
+                            >
+                            <Grid
+                                HeightRequest="60"
+                                >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    Margin="15,0,0,0"
+                                    Text="Produtos:"
+                                    TextColor="white"
+                                    FontSize="18"
+                                    HorizontalTextAlignment="Start"
+                                    VerticalTextAlignment="Center"
+                                    HorizontalOptions="FillAndExpand"
+                                    WidthRequest="10"
+                                    HeightRequest="60"
+                                />
+                                <Button
+                                    Grid.Column="1"
+                                    Margin="-5,0,15,0"
+                                    CornerRadius="10"
+                                    WidthRequest="120"
+                                    HorizontalOptions="FillAndExpand"
+                                    BackgroundColor="#0F3BBF"
+                                    IsEnabled="{Binding InputButtonEnabled}"
+                                    Command="{Binding CommandSelecionaProduto}"
+                                    Text="+"
+                                    TextColor="white"
+                                    FontSize="20"
+                                    HeightRequest="60"
+                                />
+                            </Grid>
+
+
+                            <StackLayout
+                                VerticalOptions="FillAndExpand"
+                                IsVisible="{Binding InputReadOnly}"
+                                >
+                                <StackLayout
+                                    HeightRequest="{Binding GridProdutosAltura}"
+                                    >
+                                    <CollectionView
+                                        SelectionMode="Single"
+                                        ItemsSource="{Binding ProdutosSelecionados}"
+                                        >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid
+                                                    Padding="5"
+                                                    >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*" />
+                                                        <ColumnDefinition Width="0.5*" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Frame
+                                                        Grid.Column="0"
+                                                        BackgroundColor="White"
+                                                        CornerRadius="10"
+                                                        HeightRequest="15"
+                                                        Margin="10,0,0,0"
+                                                    />
+                                                    <Label
+                                                        Grid.Column="0"
+                                                        Text="{Binding Descricao}"
+                                                        TextColor="#828282"
+                                                        Margin="10,0,0,0"
+                                                        VerticalOptions="Center"
+                                                        HorizontalTextAlignment="Center"
+                                                        FontSize="20"
+                                                        HorizontalOptions="FillAndExpand"
+                                                    />
+                                                    <Frame
+                                                        Grid.Column="1"
+                                                        BackgroundColor="White"
+                                                        CornerRadius="10"
+                                                        HeightRequest="15"
+                                                        Margin="0,0,10,0"
+                                                    />
+                                                    <Label
+                                                        Grid.Column="1"
+                                                        Text="{Binding Valor}"
+                                                        TextColor="#828282"
+                                                        Margin="0,0,10,0"
+                                                        VerticalOptions="Center"
+                                                        HorizontalTextAlignment="Center"
+                                                        FontSize="20"
+                                                        HorizontalOptions="FillAndExpand"
+                                                    />
+
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+                            </StackLayout>
+
+                            <StackLayout
+                                VerticalOptions="FillAndExpand"
+                                IsVisible="{Binding InputButtonEnabled}"
+                                >
+                                <StackLayout
+                                    HeightRequest="{Binding GridProdutosAltura}"
+                                    >
+                                    <CollectionView
+                                        SelectionMode="Single"
+                                        ItemsSource="{Binding ProdutosSelecionados}"
+                                        >
+                                        <CollectionView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid
+                                                    Padding="5"
+                                                    >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*" />
+                                                        <ColumnDefinition Width="0.5*" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Frame
+                                                        Grid.Column="0"
+                                                        BackgroundColor="White"
+                                                        CornerRadius="10"
+                                                        HeightRequest="15"
+                                                        Margin="10,0,0,0"
+                                                    />
+                                                    <Label
+                                                        Grid.Column="0"
+                                                        Text="{Binding Descricao}"
+                                                        TextColor="#828282"
+                                                        Margin="10,0,0,0"
+                                                        VerticalOptions="Center"
+                                                        HorizontalTextAlignment="Center"
+                                                        FontSize="20"
+                                                        HorizontalOptions="FillAndExpand"
+                                                    />
+                                                    <ImageButton
+                                                        Padding="15"
+                                                        Grid.Column="1"
+                                                        BackgroundColor="#9F0000"
+                                                        CornerRadius="10"
+                                                        HeightRequest="15"
+                                                        Margin="0,0,10,0"
+                                                        Source="lixeiraButton.png"
+                                                        ClassId="{Binding Codigo}"
+                                                        Clicked="DeletaProduto"
+                                                    />
+
+                                                </Grid>
+                                            </DataTemplate>
+                                        </CollectionView.ItemTemplate>
+                                    </CollectionView>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#283040"
+                        Padding="5"
+                        CornerRadius="10"
+                        HeightRequest="100"
+                        Margin="0,2.5"
+                        >
+                        <StackLayout
+                            >
+                            <Label
+                                Text="Observação:"
+                                TextColor="white"
+                                FontSize="18"
+                                Margin="10"
+                                HorizontalTextAlignment="Start"
+                                VerticalTextAlignment="Center"
+                                HorizontalOptions="FillAndExpand"
+                                VerticalOptions="FillAndExpand"
+                            />
+                            <Entry
+                                WidthRequest="120"
+                                HorizontalOptions="FillAndExpand"
+                                TextColor="white"
+                                IsReadOnly="{Binding InputReadOnly}"
+                                Text="{Binding ObservacaoAtendimentoSelecionado}"
+                                VerticalOptions="FillAndExpand"
+                            />
+                        </StackLayout>
+                    </Frame>
+
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>
